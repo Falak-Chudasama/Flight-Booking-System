@@ -1,9 +1,9 @@
 import { Router } from "express";
-import passengerServices from "../services/Passenger.service.js";
+import passengerControllers from "../controllers/Passenger.controller.js";
 
 const passengerRouter = Router();
 
-passengerRouter.post("/register", passengerServices.registerPassenger);
-passengerRouter.post("/login", passengerServices.loginPassenger);
+passengerRouter.post("/register", passengerControllers.register);
+passengerRouter.post("/login", passengerControllers.login);
 
 export default passengerRouter;

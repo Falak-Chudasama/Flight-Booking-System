@@ -6,6 +6,7 @@ import Wallet from "../models/Wallet.model.js";
 const registerPassenger = async ({ name, email, password }) => {
     const existing = await Passenger.findOne({ email });
     if (existing) throw new Error("Passenger already exists");
+    if (!password) throw new Error("Password required");
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -20,7 +21,13 @@ const registerPassenger = async ({ name, email, password }) => {
         balance: 50000
     });
 
-    return passenger;
+    const token = jwt.sign(
+        { passengerId: passenger._id },
+        process.env.JWT_SECRET,
+        { expiresIn: "7d" }
+    );
+
+    return { passenger, token };
 };
 
 const loginPassenger = async ({ email, password }) => {
