@@ -11,6 +11,6 @@ const PORT = Number(process.env.PORT);
 
 app.listen(PORT, HOST, async () => {
     await connectDB();
-    await flightServices.seedDb();
+    // await flightServices.seedDb();
     logger.info(`LISTENING ON ${HOST}:${PORT}`);
 });

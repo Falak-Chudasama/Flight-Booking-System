@@ -12,8 +12,20 @@ const addBalance = async (req, res) => {
     }
 };
 
+const getBalance = async (req, res) => {
+    try {
+        const wallet = await walletServices.getBalance({
+            passengerId: req.passengerId
+        });
+        res.json(wallet);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
 const walletControllers = {
-    addBalance
+    addBalance,
+    getBalance
 };
 
 export default walletControllers;

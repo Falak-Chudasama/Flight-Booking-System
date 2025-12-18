@@ -28,9 +28,16 @@ const deductBalance = async ({ passengerId, amount }) => {
     return wallet;
 };
 
+const getBalance = async ({ passengerId }) => {
+    const wallet = await Wallet.findOne({ passengerId });
+    if (!wallet) throw new Error("Wallet not found");
+    return wallet;
+};
+
 const walletServices = {
     addBalance,
-    deductBalance
+    deductBalance,
+    getBalance
 };
 
 export default walletServices;

@@ -1,9 +1,15 @@
 import Booking from "../models/Booking.model.js";
 import Flight from "../models/Flight.model.js";
+import walletServices from "./Wallet.service.js";
 
 const bookFlight = async ({ passengerId, flightId }) => {
     const flight = await Flight.findById(flightId);
     if (!flight) throw new Error("Flight not found");
+
+    await walletServices.deductBalance({
+        passengerId,
+        amount: flight.currentPrice
+    });
 
     const booking = await Booking.create({
         pnr: Math.random().toString(36).substring(2, 8).toUpperCase(),
