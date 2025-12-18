@@ -25,8 +25,16 @@ const bookFlight = async ({ passengerId, flightId }) => {
     return booking;
 };
 
+const getBookingHistory = async ({ passengerId }) => {
+    const bookings = await Booking.find({ passengerId })
+        .sort({ createdAt: -1 });
+
+    return bookings;
+};
+
 const bookingServices = {
-    bookFlight
+    bookFlight,
+    getBookingHistory
 };
 
 export default bookingServices;

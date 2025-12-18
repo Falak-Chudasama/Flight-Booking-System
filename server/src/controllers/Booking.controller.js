@@ -12,8 +12,20 @@ const book = async (req, res) => {
     }
 };
 
+const getHistory = async (req, res) => {
+    try {
+        const bookings = await bookingServices.getBookingHistory({
+            passengerId: req.passengerId
+        });
+        res.json(bookings);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+};
+
 const bookingControllers = {
-    book
+    book,
+    getHistory
 };
 
 export default bookingControllers;

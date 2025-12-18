@@ -7,5 +7,6 @@ const bookingRouter = Router();
 
 bookingRouter.post("/", authMiddleware, capitalisticPricingMiddleware, bookingControllers.book);
 bookingRouter.post("/bot", bookingControllers.book);
+bookingRouter.get("/",authMiddleware,bookingControllers.getHistory);
 
 export default bookingRouter;
