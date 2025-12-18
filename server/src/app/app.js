@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 
 import passengerRouter from "../routes/Passenger.routes.js";
 import flightRouter from "../routes/Flight.routes.js";
@@ -13,6 +14,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/tickets",express.static(path.resolve(process.cwd(), "server", "tickets")));
 
 app.use("/api/passengers", passengerRouter);
 app.use("/api/flights", flightRouter);

@@ -1,5 +1,16 @@
 import Flight from "../models/Flight.model.js";
 
+const searchFlights = async ({ departureCity, arrivalCity }) => {
+    const query = {};
+
+    if (departureCity) query.departureCity = departureCity;
+    if (arrivalCity) query.arrivalCity = arrivalCity;
+
+    const flights = await Flight.find(query).limit(10);
+
+    return flights;
+};
+
 const seedDb = async () => {
     const flights = [
         { flightId: "AI101", airline: "Air India", departureCity: "Delhi", arrivalCity: "Mumbai", basePrice: 2200 },
@@ -39,7 +50,8 @@ const seedDb = async () => {
 };
 
 const flightServices = {
-    seedDb
+    seedDb,
+    searchFlights
 };
 
 export default flightServices;

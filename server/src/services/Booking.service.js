@@ -1,6 +1,7 @@
 import Booking from "../models/Booking.model.js";
 import Flight from "../models/Flight.model.js";
 import walletServices from "./Wallet.service.js";
+import pdfServices from "./Pdf.service.js";
 
 const bookFlight = async ({ passengerId, flightId }) => {
     const flight = await Flight.findById(flightId);
@@ -21,6 +22,11 @@ const bookFlight = async ({ passengerId, flightId }) => {
         to: flight.arrivalCity,
         amountPaid: flight.currentPrice
     });
+
+    const pdfPath = await pdfServices.generateTicketPdf({ booking });
+
+    booking.pdfPath = pdfPath;
+    await booking.save();
 
     return booking;
 };
