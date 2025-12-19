@@ -11,6 +11,7 @@ import {
     Search
 } from "lucide-react";
 import apis from "../apis/apis";
+import globals from "../globals/globals";
 
 function BookingHistory() {
     const navigate = useNavigate();
@@ -153,7 +154,7 @@ function BookingHistory() {
                                     </div>
 
                                     <a
-                                        href={booking.pdfPath}
+                                        href={`${globals.serverOrigin}${booking.pdfPath}`}
                                         target="_blank"
                                         rel="noreferrer"
                                         className="flex-1 lg:flex-none flex items-center justify-center gap-2 bg-slate-900 hover:bg-blue-600 text-white px-6 py-4 rounded-2xl font-black text-sm transition-all shadow-lg shadow-slate-200 active:scale-95"

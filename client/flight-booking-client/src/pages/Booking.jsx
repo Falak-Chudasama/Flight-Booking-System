@@ -3,12 +3,13 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import {
     ArrowLeft,
     CheckCircle2,
-    Download,
+    ExternalLink,
     Plane,
     ShieldCheck,
     ChevronRight
 } from "lucide-react";
 import apis from "../apis/apis";
+import globals from "../globals/globals";
 
 function Booking() {
     const { id } = useParams();
@@ -110,13 +111,13 @@ function Booking() {
 
                         <div className="mt-10 space-y-4">
                             <a
-                                href={booking.pdfPath}
+                                href={`${globals.serverOrigin}${booking.pdfPath}`}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="w-full flex items-center justify-center gap-3 bg-slate-900 hover:bg-slate-800 text-white py-4 rounded-2xl font-bold transition-all shadow-lg shadow-slate-200 active:scale-[0.98]"
+                                className="w-full flex items-center justify-center gap-3 bg-slate-900 hover:bg-blue-600 text-white py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] transition-all shadow-xl shadow-slate-200 active:scale-[0.98] group"
                             >
-                                <Download size={20} />
-                                Download E-Ticket
+                                <ExternalLink size={18} className="group-hover:rotate-12 transition-transform duration-300" />
+                                View E-Ticket
                             </a>
 
                             <Link to="/flights" className="block text-center text-slate-400 hover:text-blue-600 font-bold transition-colors text-sm uppercase tracking-widest">
@@ -200,8 +201,8 @@ function Booking() {
                             onClick={handleConfirmBooking}
                             disabled={loading}
                             className={`w-full py-5 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-3 shadow-xl ${loading
-                                    ? "bg-slate-100 text-slate-400 cursor-not-allowed"
-                                    : "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200 active:scale-[0.98]"
+                                ? "bg-slate-100 text-slate-400 cursor-not-allowed"
+                                : "bg-blue-600 hover:bg-blue-700 text-white shadow-blue-200 active:scale-[0.98]"
                                 }`}
                         >
                             {loading ? (
