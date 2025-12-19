@@ -6,8 +6,9 @@ const searchFlights = async ({ departureCity, arrivalCity }) => {
     if (departureCity) query.departureCity = departureCity;
     if (arrivalCity) query.arrivalCity = arrivalCity;
 
-    const flights = await Flight.find(query).limit(10);
-    return flights;
+    const hasFilters = Object.keys(query).length > 0;
+
+    return hasFilters ? await Flight.find(query).limit(10) : await Flight.find({});
 };
 
 const seedDb = async () => {
