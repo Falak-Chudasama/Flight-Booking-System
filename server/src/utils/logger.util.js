@@ -5,13 +5,12 @@ import morgan from "morgan";
 import chalk from "chalk";
 
 const { createLogger, format, transports } = winston;
+const { combine, timestamp, printf, uncolorize } = format;
 
 const logDir = path.resolve("logs");
 if (!fs.existsSync(logDir)) {
     fs.mkdirSync(logDir);
 }
-
-const { combine, timestamp, printf, uncolorize } = format;
 
 const createUnifiedFormatter = (truncate, useColors = false) => {
     return printf(({ timestamp, level, message, stack, http }) => {
@@ -20,7 +19,7 @@ const createUnifiedFormatter = (truncate, useColors = false) => {
             const parts = msg.trim().split(" ");
             const method = parts[0];
             const requestPath = parts.slice(1).join(" ");
-            let domainAndPath = `api.plum.com${requestPath}`;
+            let domainAndPath = `localhost:3050${requestPath}`;
 
             if (truncate && domainAndPath.length > 45) {
                 domainAndPath = `${domainAndPath.slice(0, 40)}...${domainAndPath.slice(-5)}`;

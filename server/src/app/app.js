@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
+import { morganMiddleware } from "../utils/logger.util.js";
 
 import passengerRouter from "../routes/Passenger.routes.js";
 import flightRouter from "../routes/Flight.routes.js";
@@ -11,11 +12,18 @@ import transactionRouter from "../routes/Transaction.routes.js";
 
 const app = express();
 
-app.use(cors());
+app.use(
+    cors({
+        origin: true,
+        credentials: true
+    })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(morganMiddleware);
 
-app.use("/tickets",express.static(path.resolve(process.cwd(), "server", "tickets")));
+app.use("/tickets", express.static(path.resolve(process.cwd(), "tickets")));
 
 app.use("/api/passengers", passengerRouter);
 app.use("/api/flights", flightRouter);
@@ -24,8 +32,8 @@ app.use("/api/wallets", walletRouter);
 app.use("/api/booking-attempts", bookingAttemptRouter);
 app.use("/api/transactions", transactionRouter);
 
-app.get('/', (req, res) => {
-    res.json({ message: 'WELCOME' });
+app.get("/", (req, res) => {
+    res.json({ message: "WELCOME" });
 });
 
 export default app;
