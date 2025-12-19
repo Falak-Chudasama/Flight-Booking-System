@@ -131,6 +131,19 @@ async function addWalletBalance(amount) {
     }
 }
 
+async function attemptBooking(flightId) {
+    try {
+        const response = await axiosPublic.post("booking-attempts", {
+            flightId
+        });
+
+        return response.data;
+    } catch (err) {
+        handleError(err);
+        throw err;
+    }
+}
+
 function logout() {
     utils.clearTokenCookie();
 }
@@ -145,6 +158,7 @@ const apis = {
     createBooking,
     getBookings,
     downloadTicket,
+    attemptBooking,
 
     getWalletBalance,
     addWalletBalance

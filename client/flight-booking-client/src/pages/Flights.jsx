@@ -123,6 +123,11 @@ function Flights() {
                         visibleFlights.map((flight) => {
                             const surged = flight.currentPrice > flight.basePrice;
 
+                            const handleClick = () => {
+                                apis.attemptBooking(flight._id);
+                                navigate(`/booking/${flight._id}`);
+                            }
+
                             return (
                                 <div
                                     key={flight._id}
@@ -176,7 +181,7 @@ function Flights() {
                                         </div>
 
                                         <button
-                                            onClick={() => navigate(`/booking/${flight._id}`)}
+                                            onClick={() => handleClick()}
                                             className="bg-slate-900 hover:bg-blue-600 text-white px-8 py-3 rounded-2xl font-bold transition-all duration-300 active:scale-95 shadow-md"
                                         >
                                             Select
