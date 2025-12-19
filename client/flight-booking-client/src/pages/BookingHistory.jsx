@@ -18,7 +18,7 @@ function BookingHistory() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        document.title = "SkyPass | Booking History";
+        document.title = "Booking History";
         fetchBookings();
     }, []);
 

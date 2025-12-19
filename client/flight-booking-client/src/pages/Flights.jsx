@@ -13,7 +13,7 @@ function Flights() {
     const [visibleFlights, setVisibleFlights] = useState([]);
 
     useEffect(() => {
-        document.title = "Plum | Find Flights";
+        document.title = "Find Flights";
         fetchFlights();
     }, []);
 

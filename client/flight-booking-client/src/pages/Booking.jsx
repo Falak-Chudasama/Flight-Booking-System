@@ -19,7 +19,7 @@ function Booking() {
     const [booking, setBooking] = useState(null);
 
     useEffect(() => {
-        document.title = "Plum | Review Booking";
+        document.title = "Review Booking";
         loadFlight();
     }, [id]);
 
