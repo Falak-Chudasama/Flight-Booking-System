@@ -45,7 +45,10 @@ function SignUp() {
 
     return (
         <div className="h-screen w-screen bg-white p-4 flex items-center justify-between overflow-hidden select-none">
-            <div className="h-full w-[48%] p-6 rounded-2xl bg-blue-600 relative">
+            <div
+                className="h-full w-[48%] p-6 rounded-2xl relative"
+                style={{ backgroundColor: "var(--color-blue-primary)" }}
+            >
                 <p className="text-3xl font-light text-white absolute bottom-10">
                     Simple.
                     <br />
@@ -57,51 +60,118 @@ function SignUp() {
 
             <div className="h-fit w-[50%] p-6 grid gap-y-12 place-items-center">
                 <div className="grid place-items-center gap-y-3">
-                    <h1 className="text-blue-600 font-semibold text-6xl">Create Account</h1>
-                    <h3 className="text-blue-400 font-light text-3xl">Book flights instantly</h3>
+                    <h1
+                        className="font-semibold text-6xl"
+                        style={{ color: "var(--color-blue-primary)" }}
+                    >
+                        Create Account
+                    </h1>
+                    <h3
+                        className="font-light text-3xl"
+                        style={{ color: "var(--color-blue-secondary)" }}
+                    >
+                        Book flights instantly
+                    </h3>
                 </div>
 
                 <form
                     onSubmit={handleSubmit}
                     className="min-w-90 max-w-100 grid place-items-center gap-y-4"
                 >
-                    <div className={`w-full ${nameActive ? "border-blue-600" : "border-blue-300"} ${fieldClass}`}>
-                        <p className={`${textClass} ${nameActive ? "text-blue-600" : "text-blue-300"}`}>
+                    <div
+                        className={`w-full ${fieldClass}`}
+                        style={{
+                            borderColor: nameActive
+                                ? "var(--color-blue-primary)"
+                                : "var(--color-blue-border)"
+                        }}
+                    >
+                        <p
+                            className={textClass}
+                            style={{
+                                color: nameActive
+                                    ? "var(--color-blue-primary)"
+                                    : "var(--color-blue-border)"
+                            }}
+                        >
                             Full name
                         </p>
                         <input
                             ref={nameRef}
                             onFocus={() => setNameActive(true)}
                             onBlur={() => setNameActive(false)}
-                            className={`w-14/15 ${nameActive ? "text-blue-600" : "text-blue-300"} ${inputClass}`}
+                            className={`w-14/15 ${inputClass}`}
+                            style={{
+                                color: nameActive
+                                    ? "var(--color-blue-primary)"
+                                    : "var(--color-blue-border)"
+                            }}
                             type="text"
                             required
                         />
                     </div>
 
-                    <div className={`w-full ${emailActive ? "border-blue-600" : "border-blue-300"} ${fieldClass}`}>
-                        <p className={`${textClass} ${emailActive ? "text-blue-600" : "text-blue-300"}`}>
+                    <div
+                        className={`w-full ${fieldClass}`}
+                        style={{
+                            borderColor: emailActive
+                                ? "var(--color-blue-primary)"
+                                : "var(--color-blue-border)"
+                        }}
+                    >
+                        <p
+                            className={textClass}
+                            style={{
+                                color: emailActive
+                                    ? "var(--color-blue-primary)"
+                                    : "var(--color-blue-border)"
+                            }}
+                        >
                             Email address
                         </p>
                         <input
                             ref={emailRef}
                             onFocus={() => setEmailActive(true)}
                             onBlur={() => setEmailActive(false)}
-                            className={`w-14/15 ${emailActive ? "text-blue-600" : "text-blue-300"} ${inputClass}`}
+                            className={`w-14/15 ${inputClass}`}
+                            style={{
+                                color: emailActive
+                                    ? "var(--color-blue-primary)"
+                                    : "var(--color-blue-border)"
+                            }}
                             type="email"
                             required
                         />
                     </div>
 
-                    <div className={`w-full ${passwordActive ? "border-blue-600" : "border-blue-300"} ${fieldClass}`}>
-                        <p className={`${textClass} ${passwordActive ? "text-blue-600" : "text-blue-300"}`}>
+                    <div
+                        className={`w-full ${fieldClass}`}
+                        style={{
+                            borderColor: passwordActive
+                                ? "var(--color-blue-primary)"
+                                : "var(--color-blue-border)"
+                        }}
+                    >
+                        <p
+                            className={textClass}
+                            style={{
+                                color: passwordActive
+                                    ? "var(--color-blue-primary)"
+                                    : "var(--color-blue-border)"
+                            }}
+                        >
                             Password
                         </p>
                         <input
                             ref={passwordRef}
                             onFocus={() => setPasswordActive(true)}
                             onBlur={() => setPasswordActive(false)}
-                            className={`w-14/15 ${passwordActive ? "text-blue-600" : "text-blue-300"} ${inputClass}`}
+                            className={`w-14/15 ${inputClass}`}
+                            style={{
+                                color: passwordActive
+                                    ? "var(--color-blue-primary)"
+                                    : "var(--color-blue-border)"
+                            }}
                             type="password"
                             required
                         />
@@ -111,19 +181,21 @@ function SignUp() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="
-                                w-full py-2 rounded-full
-                                border-3 border-blue-300
-                                bg-blue-50 hover:bg-blue-100
-                                text-2xl font-medium
-                                duration-300
-                            "
+                            className="w-full py-2 rounded-full border-3 text-2xl font-medium duration-300"
+                            style={{
+                                borderColor: "var(--color-blue-border)",
+                                backgroundColor: "var(--color-blue-surface)"
+                            }}
                         >
                             {loading ? "Creating..." : "Sign Up"}
                         </button>
 
                         <span className="text-center text-lg">
-                            <Link to="/signin" className="text-blue-600 underline">
+                            <Link
+                                to="/signin"
+                                className="underline"
+                                style={{ color: "var(--color-blue-primary)" }}
+                            >
                                 Sign in
                             </Link>{" "}
                             if already registered
